@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <section className="grid gap-8  mx-8 mt-8">
