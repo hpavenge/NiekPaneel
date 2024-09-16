@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
     // Insert data into the database
     const query = `
-      INSERT INTO Antwoorden (vraag1, vraag2, vraag3, vraag4, vraag5, teamname) 
+      INSERT INTO antwoorden (vraag1, vraag2, vraag3, vraag4, vraag5, teamname) 
       VALUES ($1, $2, $3, $4, $5, $6) 
       RETURNING *;
     `;

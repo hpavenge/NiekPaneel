@@ -1,13 +1,24 @@
 'use client'
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 
 export default function Home() {
 
   const [selectedTeam, setSelectedTeam] = useState('');
   const [showPrompt, setShowPrompt] = useState(false);
-  
+  const [formData, setFormData] = useState({
+    vraag1: '',
+    vraag2: '',
+    vraag3: '',
+    vraag4: '',
+    vraag5: '',
+    teamname: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
 
   type TeamName = 'Team1' | 'Team2' | 'Team3' | 'Team4' | 'Team5' | 'Team6' | 'Team7' | 'Team8' | 'Team9' | 'Team10' | 'Team11' | 'Team12';
 
@@ -26,12 +37,52 @@ export default function Home() {
     'Team12': 'Wat tekst voor team 12',
   }
 
-  function handleTeamChange(e: { target: { value: React.SetStateAction<string>; }; }){
+  function handleTeamChange(e: { target: { value: React.SetStateAction<string> } }) {
     setSelectedTeam(e.target.value);
-
+    setFormData({ ...formData, teamname: e.target.value });
   }
 
-  function togglePrompt(){
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSuccess('Form submitted successfully!');
+        setFormData({
+          vraag1: '',
+          vraag2: '',
+          vraag3: '',
+          vraag4: '',
+          vraag5: '',
+          teamname: '',
+        });
+      } else {
+        const data = await response.json();
+        setError(data.error || 'Error submitting the form');
+      }
+    } catch (error) {
+      setError('Error submitting the form');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function togglePrompt() {
     setShowPrompt(!showPrompt)
   }
 
@@ -41,48 +92,54 @@ export default function Home() {
       <div>
         <h1 className="text-4xl font-medium mb-2">Uitleg niekert</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum mauris enim, id suscipit lectus rutrum vel. Integer ac odio odio. Praesent non nulla vitae enim elementum blandit quis ac massa. Donec vitae risus consectetur sem fermentum iaculis. Morbi euismod nec ex eu fringilla. Sed urna neque, auctor molestie magna vel, eleifend elementum ante. Aenean lacinia, tellus ac commodo volutpat, sem arcu tincidunt nunc, eget dignissim nibh quam sit amet turpis. Phasellus augue neque, tristique non odio quis, lacinia malesuada quam.
-Nulla non mi sed dui sagittis accumsan. Nam suscipit arcu quis purus placerat, nec lacinia magna laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam nec sapien id metus interdum pretium. Vivamus sit amet congue mi, id volutpat magna. Donec eu blandit ante, ut dignissim leo. Curabitur consequat, ligula id porta maximus, eros ante pellentesque felis, eu accumsan justo nunc non lectus. Donec facilisis interdum nisi, at efficitur massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p >
+          Nulla non mi sed dui sagittis accumsan. Nam suscipit arcu quis purus placerat, nec lacinia magna laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam nec sapien id metus interdum pretium. Vivamus sit amet congue mi, id volutpat magna. Donec eu blandit ante, ut dignissim leo. Curabitur consequat, ligula id porta maximus, eros ante pellentesque felis, eu accumsan justo nunc non lectus. Donec facilisis interdum nisi, at efficitur massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p >
       </div >
 
-            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        {['vraag 1', 'vraag 2', 'vraag 3', 'vraag 4', 'vraag 5'].map((label, index) => (
+      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+        {['vraag1', 'vraag2', 'vraag3', 'vraag4', 'vraag5'].map((label, index) => (
           <div key={index} className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={`vraag${index + 1}`}>
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={label}>
               {label}
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id={`vraag${index + 1}`}
+              id={label}
               type="text"
-              name={`vraag${index + 1}`}
+              name={label}
               placeholder={`Jouw antwoord op ${label}`}
+              value={formData[label as keyof typeof formData]}
+              onChange={handleInputChange}
             />
           </div>
         ))}
+
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="team">
             Kies je team
           </label>
-          <select 
-            id="team" 
+          <select
+            id="team"
             name="teamname"
             value={selectedTeam}
             onChange={handleTeamChange}
             className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           >
             <option value="">Selecteer een team</option>
-            {(Object.keys(teamprompts) as TeamName[]).map((team) => (
-              <option key={team} value={team}>{team}</option>
+            {Object.keys(teamprompts).map((team) => (
+              <option key={team} value={team}>
+                {team}
+              </option>
             ))}
-          </select>          
+          </select>
         </div>
         <div className="flex items-center justify-between">
-          <input 
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+          <input
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
-            value="Verstuur"
+            value={loading ? 'Versturen...' : 'Verstuur'}
+            disabled={loading}
           />
-          <button 
+          <button
             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
             onClick={togglePrompt}
@@ -90,6 +147,8 @@ Nulla non mi sed dui sagittis accumsan. Nam suscipit arcu quis purus placerat, n
             {showPrompt ? 'Verberg Prompt' : 'Toon Prompt'}
           </button>
         </div>
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+        {success && <p className="text-green-500 mt-4">{success}</p>}
       </form>
 
       {showPrompt && selectedTeam && (
