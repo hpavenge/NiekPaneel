@@ -4,8 +4,8 @@ import React, {useState} from 'react';
 
 export default function Home() {
   const [selectedTeam, setSelectedTeam] = useState('');
-  const [showPromt, setShowPrompt] = useState(false);
-  
+  const [showPrompt, setShowPrompt] = useState(false);
+
   type TeamName = 'Team1' | 'Team2' | 'Team3' | 'Team4' | 'Team5' | 'Team6' | 'Team7' | 'Team8' | 'Team9' | 'Team10' | 'Team11' | 'Team12';
 
   const teamprompts = {
@@ -29,7 +29,7 @@ export default function Home() {
   }
 
   function togglePrompt(){
-    setShowPrompt(!showPromt)
+    setShowPrompt(!showPrompt)
   }
 
 
@@ -41,48 +41,60 @@ export default function Home() {
 Nulla non mi sed dui sagittis accumsan. Nam suscipit arcu quis purus placerat, nec lacinia magna laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam nec sapien id metus interdum pretium. Vivamus sit amet congue mi, id volutpat magna. Donec eu blandit ante, ut dignissim leo. Curabitur consequat, ligula id porta maximus, eros ante pellentesque felis, eu accumsan justo nunc non lectus. Donec facilisis interdum nisi, at efficitur massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p >
       </div >
 
-      <form>
-        <div>
-          <label>Vraag 1</label>
-          <input type="text" name="vraag1"></input>
-        </div>
-        <div>
-          <label>Vraag 2</label>
-          <input type="text" name="vraag2"></input>
-        </div>
-        <div>
-          <label>Vraag 3</label>
-          <input type="text" name="vraag3"></input>
-        </div>
-        <div>
-          <label>Vraag 4</label>
-          <input type="text" name="vraag4"></input>
-        </div>
-        <div>
-          <label>Vraag 5</label>
-          <input type="text" name="vraag5"></input>
-        </div>
-        <div>
-          <select id="team" name="teamname" value={selectedTeam} onChange={handleTeamChange}>
-            <option value="">Kies je team</option>
-            {Object.keys(teamprompts).map((team => (
-              <option key ={team} value={team}>{team}</option>
-            )))}
+            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        {['Vraag 1', 'Vraag 2', 'Vraag 3', 'Vraag 4', 'Vraag 5'].map((label, index) => (
+          <div key={index} className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={`vraag${index + 1}`}>
+              {label}
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id={`vraag${index + 1}`}
+              type="text"
+              name={`vraag${index + 1}`}
+              placeholder={`Jouw antwoord op ${label}`}
+            />
+          </div>
+        ))}
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="team">
+            Kies je team
+          </label>
+          <select 
+            id="team" 
+            name="teamname"
+            value={selectedTeam}
+            onChange={handleTeamChange}
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="">Selecteer een team</option>
+            {(Object.keys(teamprompts) as TeamName[]).map((team) => (
+              <option key={team} value={team}>{team}</option>
+            ))}
           </select>          
         </div>
-        <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit"/>
+        <div className="flex items-center justify-between">
+          <input 
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+            type="submit"
+            value="Verstuur"
+          />
+          <button 
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button"
+            onClick={togglePrompt}
+          >
+            {showPrompt ? 'Verberg Prompt' : 'Toon Prompt'}
+          </button>
+        </div>
       </form>
-      <div className="flex">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={togglePrompt}>
-          {showPromt ? 'Verberg Prompt tekst' : 'Toon Prompt tekst'}
-        </button>
-      </div>
 
-      {showPromt && selectedTeam && (
-          <span className="mt-4 p-4 bg-gray-100 rounded">
-          {teamprompts[selectedTeam as TeamName]}
-        </span>
-        )}
+      {showPrompt && selectedTeam && (
+        <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-4" role="alert">
+          <p className="font-bold">Prompt voor {selectedTeam}</p>
+          <p>{teamprompts[selectedTeam as TeamName]}</p>
+        </div>
+      )}
 
     </section >
   );
