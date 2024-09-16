@@ -5,6 +5,8 @@ import React, {useState} from 'react';
 export default function Home() {
   const [selectedTeam, setSelectedTeam] = useState('');
   const [showPromt, setShowPrompt] = useState(false);
+  
+  type TeamName = 'Team1' | 'Team2' | 'Team3' | 'Team4' | 'Team5' | 'Team6' | 'Team7' | 'Team8' | 'Team9' | 'Team10' | 'Team11' | 'Team12';
 
   const teamprompts = {
     'Team1': 'Wat tekst voor team 1',
@@ -21,7 +23,7 @@ export default function Home() {
     'Team12': 'Wat tekst voor team 12',
   }
 
-  function handleTeamChange(e){
+  function handleTeamChange(e: { target: { value: React.SetStateAction<string>; }; }){
     setSelectedTeam(e.target.value);
 
   }
@@ -78,7 +80,7 @@ Nulla non mi sed dui sagittis accumsan. Nam suscipit arcu quis purus placerat, n
 
       {showPromt && selectedTeam && (
           <span className="mt-4 p-4 bg-gray-100 rounded">
-          {teamprompts[selectedTeam]}
+          {teamprompts[selectedTeam as TeamName]}
         </span>
         )}
 
