@@ -2,9 +2,12 @@
 
 import React, {useState} from 'react';
 
+
 export default function Home() {
+
   const [selectedTeam, setSelectedTeam] = useState('');
   const [showPrompt, setShowPrompt] = useState(false);
+  
 
   type TeamName = 'Team1' | 'Team2' | 'Team3' | 'Team4' | 'Team5' | 'Team6' | 'Team7' | 'Team8' | 'Team9' | 'Team10' | 'Team11' | 'Team12';
 
@@ -42,7 +45,7 @@ Nulla non mi sed dui sagittis accumsan. Nam suscipit arcu quis purus placerat, n
       </div >
 
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        {['Vraag 1', 'Vraag 2', 'Vraag 3', 'Vraag 4', 'Vraag 5'].map((label, index) => (
+        {['vraag 1', 'vraag 2', 'vraag 3', 'vraag 4', 'vraag 5'].map((label, index) => (
           <div key={index} className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={`vraag${index + 1}`}>
               {label}
