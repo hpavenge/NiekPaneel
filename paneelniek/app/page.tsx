@@ -37,10 +37,12 @@ export default function Home() {
     'Team12': 'Wat tekst voor team 12',
   }
 
-  function handleTeamChange(e: { target: { value: React.SetStateAction<string> } }) {
-    setSelectedTeam(e.target.value);
-    setFormData({ ...formData, teamname: e.target.value });
+  function handleTeamChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedValue = e.target.value;
+    setSelectedTeam(selectedValue); // Updates the selected team
+    setFormData({ ...formData, teamname: selectedValue }); // Sets the teamname in formData
   }
+
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
