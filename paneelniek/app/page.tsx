@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 export default function Home() {
 
   const [selectedTeam, setSelectedTeam] = useState('');
-  const [showPrompt, setShowPrompt] = useState(false);
   const [formData, setFormData] = useState({
     vraag1: '',
     vraag2: '',
@@ -16,9 +15,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-
-
-  type TeamName = 'Team1' | 'Team2' | 'Team3' | 'Team4' | 'Team5' | 'Team6' | 'Team7' | 'Team8' | 'Team9';
 
   const teamprompts = {
     'Team1': 'Wat tekst voor team 1',
@@ -77,11 +73,6 @@ export default function Home() {
     }
   }
 
-  function togglePrompt() {
-    setShowPrompt(!showPrompt)
-  }
-
-
   return (
     <section className="grid gap-8  mx-8 mt-8">
       <div>
@@ -90,7 +81,7 @@ export default function Home() {
         <br></br>
         <details>
           <summary>Spel</summary>
-          <p>Veel van de collega's kennen elkaar al, maar omdat we vandaag de dag met meer dan ooit zijn, kennen veel collega's elkaar nog niet (zo goed). Onze teamdag staat daarom in het teken van verbinden, omdat samenwerken niet alleen veel effectiever is als we elkaar kennen, maar belangrijker nog: het is ook veel leuker. Om dat verbinden op een speelse manier te bewerkstelligen, hebben we hieronder een spelvorm bedacht waarbij jullie worden uitgedaagd om in teams na te denken over hetgeen jullie aangereikt wordt op het mooie Visio-terrein.</p>
+          <p>Veel van de collega&prime;s kennen elkaar al, maar omdat we vandaag de dag met meer dan ooit zijn, kennen veel collega&prime;s elkaar nog niet (zo goed). Onze teamdag staat daarom in het teken van verbinden, omdat samenwerken niet alleen veel effectiever is als we elkaar kennen, maar belangrijker nog: het is ook veel leuker. Om dat verbinden op een speelse manier te bewerkstelligen, hebben we hieronder een spelvorm bedacht waarbij jullie worden uitgedaagd om in teams na te denken over hetgeen jullie aangereikt wordt op het mooie Visio-terrein.</p>
           <br></br>
           <p>We nodigen jullie daarom graag uit om dadelijk in beurten, met je team, het terrein te gaan verkennen. Om te weten bij wie je in het team hoort, vinden jullie hieronder een tabel met daarin de verschillende teams. Om ervoor te zorgen dat we elkaar zo min mogelijk in de weg lopen, gaan eerst teams 1 tot en met 4 het terrein op en een half uur later team 5 tot en met 9. Een vijftal gebeurtenissen staan jullie, verspreid over het terrein, te wachten. Bij elk van deze punten zullen jullie een gebeurtenis aantreffen waar jullie als team jullie brein over gaan breken. Omdat de gebeurtenissen verspreid liggen over het terrein, is het de bedoeling dat gij zoekt en gij daarom zult vinden. Krijg je ze niet alle 5 gevonden? Vraag dan vooral eerst elkaar om hulp. Kom je er dan nog steeds niet uit? Dan mag je altijd aankloppen bij de organisatie.</p>
           <br></br>
