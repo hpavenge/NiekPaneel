@@ -10,6 +10,7 @@ export default function Home() {
     vraag1: '',
     vraag2: '',
     vraag3: '',
+    vraag4: '',
     teamname: '',
   });
   const [loading, setLoading] = useState(false);
@@ -60,6 +61,7 @@ export default function Home() {
           vraag1: '',
           vraag2: '',
           vraag3: '',
+          vraag4: '',
           teamname: '',
         });
       } else {
@@ -86,6 +88,253 @@ export default function Home() {
           <p>We nodigen jullie daarom graag uit om dadelijk in beurten, met je team, het terrein te gaan verkennen. Om te weten bij wie je in het team hoort, vinden jullie hieronder een tabel met daarin de verschillende teams. Om ervoor te zorgen dat we elkaar zo min mogelijk in de weg lopen, gaan eerst teams 1 tot en met 4 het terrein op en een half uur later team 5 tot en met 9. Een vijftal gebeurtenissen staan jullie, verspreid over het terrein, te wachten. Bij elk van deze punten zullen jullie een gebeurtenis aantreffen waar jullie als team jullie brein over gaan breken. Omdat de gebeurtenissen verspreid liggen over het terrein, is het de bedoeling dat gij zoekt en gij daarom zult vinden. Krijg je ze niet alle 5 gevonden? Vraag dan vooral eerst elkaar om hulp. Kom je er dan nog steeds niet uit? Dan mag je altijd aankloppen bij de organisatie.</p>
           <br></br>
           <p>Tijdens het verkennen van het terrein, zullen jij en je team een vijftal geluidsfragmenten tegenkomen over een bekende Kennis Over Zien casus. Het is aan jullie om, op basis van deze fragmenten hieronder in de tabel, het juiste fragment te koppelen aan het juiste onderdeel van de kenniscirkel. We zullen eens zien hoe goed deze er bij eenieder inzit, wellicht kom je erachter dat een kleine opfrisser op zijn plek is; een goede reden om goed gebruik te maken van elkaars kennis en kunde. De antwoorden vul je hieronder in de tabel in. Succes en heel veel plezier!</p>
+          <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag4">
+                Fragment 1:
+              </label>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment1"
+                    className="form-radio"
+                    value="Communicatie"
+                  />
+                  <span className="ml-2">kennis vraag signaleren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment1"
+                    className="form-radio"
+                    value="Vertrouwen"
+                  />
+                  <span className="ml-2">ontwikkelen en onderzoeken</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment1"
+                    className="form-radio"
+                    value="Diversiteit"
+                  />
+                  <span className="ml-2">nieuwe kennis realiseren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment1"
+                    className="form-radio"
+                    value="Flexibiliteit"
+                  />
+                  <span className="ml-2">feedback verzamelen en evalueren</span>
+                </label>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag4">
+                Fragment 2:
+              </label>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment2"
+                    className="form-radio"
+                    value="Communicatie"
+                  />
+                  <span className="ml-2">kennis vraag signaleren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment2"
+                    className="form-radio"
+                    value="Vertrouwen"
+                  />
+                  <span className="ml-2">ontwikkelen en onderzoeken</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment2"
+                    className="form-radio"
+                    value="Diversiteit"
+                  />
+                  <span className="ml-2">nieuwe kennis realiseren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment2"
+                    className="form-radio"
+                    value="Flexibiliteit"
+                  />
+                  <span className="ml-2">feedback verzamelen en evalueren</span>
+                </label>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag4">
+                Fragment 3:
+              </label>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment3"
+                    className="form-radio"
+                    value="Communicatie"
+                  />
+                  <span className="ml-2">kennis vraag signaleren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment3"
+                    className="form-radio"
+                    value="Vertrouwen"
+                  />
+                  <span className="ml-2">ontwikkelen en onderzoeken</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment3"
+                    className="form-radio"
+                    value="Diversiteit"
+                  />
+                  <span className="ml-2">nieuwe kennis realiseren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment3"
+                    className="form-radio"
+                    value="Flexibiliteit"
+                  />
+                  <span className="ml-2">feedback verzamelen en evalueren</span>
+                </label>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag4">
+                Fragment 4:
+              </label>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment4"
+                    className="form-radio"
+                    value="Communicatie"
+                  />
+                  <span className="ml-2">kennis vraag signaleren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment4"
+                    className="form-radio"
+                    value="Vertrouwen"
+                  />
+                  <span className="ml-2">ontwikkelen en onderzoeken</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment4"
+                    className="form-radio"
+                    value="Diversiteit"
+                  />
+                  <span className="ml-2">nieuwe kennis realiseren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment4"
+                    className="form-radio"
+                    value="Flexibiliteit"
+                  />
+                  <span className="ml-2">feedback verzamelen en evalueren</span>
+                </label>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag4">
+                Fragment 5:
+              </label>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment5"
+                    className="form-radio"
+                    value="Communicatie"
+                  />
+                  <span className="ml-2">kennis vraag signaleren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment5"
+                    className="form-radio"
+                    value="Vertrouwen"
+                  />
+                  <span className="ml-2">ontwikkelen en onderzoeken</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment5"
+                    className="form-radio"
+                    value="Diversiteit"
+                  />
+                  <span className="ml-2">nieuwe kennis realiseren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment5"
+                    className="form-radio"
+                    value="Flexibiliteit"
+                  />
+                  <span className="ml-2">feedback verzamelen en evalueren</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </details>
         <br></br>
         <details>
@@ -119,7 +368,10 @@ export default function Home() {
           <br></br>
         </details>
         <br></br>
-        <p>Zoals net besproken gaat de helft van de groepen het terrein op. De andere helft blijft voor alsnog even binnen. Omdat we jullie niet met lege handen willen achterlaten, hebben we een aantal vragen bedacht die alvast wat hersenactiviteit bespoedigen. Je vindt ze hieronder:</p>
+        <details>
+          <summary>Vragen</summary>
+          <p>Zoals net besproken gaat de helft van de groepen het terrein op. De andere helft blijft voor alsnog even binnen. Omdat we jullie niet met lege handen willen achterlaten, hebben we een aantal vragen bedacht die alvast wat hersenactiviteit bespoedigen. Je vindt ze hieronder:</p>
+        </details>
       </div >
 
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
@@ -189,6 +441,7 @@ export default function Home() {
             ))}
           </select>
         </div>
+
         <div className="flex items-center justify-between">
           <input
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
