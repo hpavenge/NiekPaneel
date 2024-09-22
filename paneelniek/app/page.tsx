@@ -137,6 +137,17 @@ export default function Home() {
                   <span className="ml-2">feedback verzamelen en evalueren</span>
                 </label>
               </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment1"
+                    className="form-radio"
+                    value="Flexibiliteit"
+                  />
+                  <span className="ml-2">delen en toepassen</span>
+                </label>
+              </div>
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag4">
@@ -184,6 +195,17 @@ export default function Home() {
                     value="Flexibiliteit"
                   />
                   <span className="ml-2">feedback verzamelen en evalueren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment1"
+                    className="form-radio"
+                    value="Flexibiliteit"
+                  />
+                  <span className="ml-2">delen en toepassen</span>
                 </label>
               </div>
             </div>
@@ -235,6 +257,17 @@ export default function Home() {
                   <span className="ml-2">feedback verzamelen en evalueren</span>
                 </label>
               </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment1"
+                    className="form-radio"
+                    value="Flexibiliteit"
+                  />
+                  <span className="ml-2">delen en toepassen</span>
+                </label>
+              </div>
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag4">
@@ -282,6 +315,17 @@ export default function Home() {
                     value="Flexibiliteit"
                   />
                   <span className="ml-2">feedback verzamelen en evalueren</span>
+                </label>
+              </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment1"
+                    className="form-radio"
+                    value="Flexibiliteit"
+                  />
+                  <span className="ml-2">delen en toepassen</span>
                 </label>
               </div>
             </div>
@@ -333,6 +377,17 @@ export default function Home() {
                   <span className="ml-2">feedback verzamelen en evalueren</span>
                 </label>
               </div>
+              <div>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="fragment1"
+                    className="form-radio"
+                    value="Flexibiliteit"
+                  />
+                  <span className="ml-2">delen en toepassen</span>
+                </label>
+              </div>
             </div>
           </div>
         </details>
@@ -371,88 +426,87 @@ export default function Home() {
         <details>
           <summary>Vragen</summary>
           <p>Zoals net besproken gaat de helft van de groepen het terrein op. De andere helft blijft voor alsnog even binnen. Omdat we jullie niet met lege handen willen achterlaten, hebben we een aantal vragen bedacht die alvast wat hersenactiviteit bespoedigen. Je vindt ze hieronder:</p>
+          <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag1">
+                Op welke drie vlakken komen wij als groep overeen met elkaar?
+              </label>
+              <textarea
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="vraag1"
+                name="vraag1"
+                rows={3}
+                placeholder="Jouw antwoord op vraag 1"
+                value={formData.vraag1}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag2">
+                Op welke drie vlakken zouden wij als groep graag overeen komen met elkaar?
+              </label>
+              <textarea
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="vraag2"
+                name="vraag2"
+                rows={3}
+                placeholder="Jouw antwoord op vraag 2"
+                value={formData.vraag2}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag3">
+                Wat zouden jullie als team de regiegroep mee willen geven?
+              </label>
+              <textarea
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="vraag3"
+                name="vraag3"
+                rows={3}
+                placeholder="Jouw antwoord op vraag 3"
+                value={formData.vraag3}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+
+
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="team">
+                Kies je team
+              </label>
+              <select
+                id="team"
+                name="teamname"
+                value={selectedTeam}
+                onChange={handleTeamChange}
+                className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              >
+                <option value="">Selecteer een team</option>
+                {Object.keys(teamprompts).map((team) => (
+                  <option key={team} value={team}>
+                    {team}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <input
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+                value={loading ? 'Versturen...' : 'Verstuur'}
+                disabled={loading}
+              />
+            </div>
+            {error && <p className="text-red-500 mt-4">{error}</p>}
+            {success && <p className="text-green-500 mt-4">{success}</p>}
+          </form>
         </details>
       </div >
-
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag1">
-            Op welke drie vlakken komen wij als groep overeen met elkaar?
-          </label>
-          <textarea
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="vraag1"
-            name="vraag1"
-            rows={3}
-            placeholder="Jouw antwoord op vraag 1"
-            value={formData.vraag1}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag2">
-            Op welke drie vlakken zouden wij als groep graag overeen komen met elkaar?
-          </label>
-          <textarea
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="vraag2"
-            name="vraag2"
-            rows={3}
-            placeholder="Jouw antwoord op vraag 2"
-            value={formData.vraag2}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vraag3">
-            Wat zouden jullie als team de regiegroep mee willen geven?
-          </label>
-          <textarea
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="vraag3"
-            name="vraag3"
-            rows={3}
-            placeholder="Jouw antwoord op vraag 3"
-            value={formData.vraag3}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="team">
-            Kies je team
-          </label>
-          <select
-            id="team"
-            name="teamname"
-            value={selectedTeam}
-            onChange={handleTeamChange}
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          >
-            <option value="">Selecteer een team</option>
-            {Object.keys(teamprompts).map((team) => (
-              <option key={team} value={team}>
-                {team}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="flex items-center justify-between">
-          <input
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-            value={loading ? 'Versturen...' : 'Verstuur'}
-            disabled={loading}
-          />
-        </div>
-        {error && <p className="text-red-500 mt-4">{error}</p>}
-        {success && <p className="text-green-500 mt-4">{success}</p>}
-      </form>
 
     </section >
   );
